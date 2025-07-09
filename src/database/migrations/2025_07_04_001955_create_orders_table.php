@@ -17,7 +17,10 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('product_id')->unique()->constrained()->cascadeOnDelete();
-            $table->foreignId('payment_method_id')->constrained();
+            $table->string('sending_postcode');
+            $table->string('sending_address');
+            $table->string('sending_building')->nullable();
+            $table->string('payment_method');
             $table->timestamps();
         });
     }

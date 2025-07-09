@@ -24,8 +24,8 @@ class Product extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function category(){
-        return $this->belongsTo(Category::class);
+    public function categories(){
+        return $this->belongsToMany(Category::class);
     }
 
     public function condition(){
@@ -36,8 +36,8 @@ class Product extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function likes(){
-        return $this->hasMany(Like::class);
+    public function likesUsers(){
+        return $this->belongsToMany(User::class);
     }
 
     public function order(){

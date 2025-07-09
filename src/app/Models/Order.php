@@ -23,7 +23,4 @@ class Order extends Model
         return $this->hasOne(Product::class);
     }
 
-    public function payment_method(){
-        return $this->belongsTo(payment_method::class);
-    }
 }

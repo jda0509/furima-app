@@ -30,8 +30,8 @@ class User extends Authenticatable
         return $this->hasMany(Product::class);
     }
 
-    public function likes(){
-        return $this->hasMany(Like::class);
+    public function likesProducts(){
+        return $this->belongsToMany(Like::class);
     }
 
     public function orders(){
@@ -41,7 +41,11 @@ class User extends Authenticatable
     public function comments(){
         return $this->hasMany(Comment::class);
     }
-    
+
+    public function profile(){
+        return $this->hasOne(Profile::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
