@@ -16,7 +16,7 @@
                 @else
                     <img src="" alt="デフォルト画像">
                 @endif
-                <input class="img__submit" type="image" name="image" value="プロフィールを変更する" />
+                <input class="img__submit" type="image" name="image" value="画像を編集する" />
             </div>
             <div class="profile__content__name">
                 <div class="profile__name__label">ユーザー名</div>

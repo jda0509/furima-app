@@ -23,7 +23,7 @@
                 </form>
             @else
                 <a href="/login" class="header__searchbox">
-                    <input type="text" placeholder="なにをお探しですか？" />
+                   c <input type="text" placeholder="なにをお探しですか？" />
                 </a>
             @endauth
             <nav class="header__content">

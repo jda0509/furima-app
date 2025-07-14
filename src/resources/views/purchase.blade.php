@@ -28,7 +28,12 @@
         <div class="sending_address__change">
             <a href="{{ route('purchase.address', ['item_id' => $product->id ]) }}" class="sending_address__link">変更する</a>
         </div>
-        < -- 現在確認中 -- >
+        @if ($lastOrder)
+            <p class="last_order__address">{{ $lastOrder->sending_address}}</p>
+        @else
+            <p class="last_order__postcode">{{ Auth::user()->profile->postcode }}</p>
+            <p class="last_order__address_building">{{ Auth::user()->profile->address }} {{ Auth::user()->profile->building }}</p>
+        @endif
     </div>
     <div class="subtotal_table">
         <div class="table__label">
@@ -48,3 +53,5 @@
     <button class="buy__product__submit" type="submit">購入する</button>
     </form>
 </div>
+
+@endsection
