@@ -21,9 +21,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'post_code',
-        'address',
-        'building'
     ];
 
     public function products(){
