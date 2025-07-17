@@ -12,7 +12,6 @@ class Product extends Model
     protected $fillable = [
         'name',
         'user_id',
-        'category_id',
         'condition_id',
         'image',
         'brand_name',
@@ -37,7 +36,7 @@ class Product extends Model
     }
 
     public function likesUsers(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class,'product_user');
     }
 
     public function order(){

@@ -20,7 +20,7 @@
             {{-- マイリスト用一覧 --}}
             @forelse ($likedProducts as $product)
                 <a href="{{ route('item.show' , [ 'item_id' => $product->id ]) }}" >
-                    <img class="product__img" src="{{ asset('storage/' . $product->img_url) }}" alt="{{ $product->name }}" >
+                    <img class="product__img" src="{{ $product->image }}" alt="{{ $product->name }}" >
                     <div class="product__name">{{ $product->name }}</div>
                 </a>
             @empty
@@ -30,7 +30,7 @@
             {{-- 通常のおすすめ一覧 --}}
             @forelse ($products as $product)
                 <a href="{{ route('item.show' , [ 'item_id' => $product->id ]) }}" >
-                    <img class="product__img" src="{{ asset('storage/' . $product->img_url) }}" alt="{{} $product->name }}" >
+                    <img class="product__img" src="{{ $product->image }}" alt="{{ $product->name }}" >
                     <div class="product">{{ $product->name }}</div>
                 </a>
             @empty

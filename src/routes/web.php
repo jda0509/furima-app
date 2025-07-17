@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,9 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', [ProductController::class,'index']);
+Route::get('/', [ProductController::class,'index'])->name('index');
+Route::get('/item/{item_id}', [ProductController::class, 'show'])->name('item.show');
+Route::post('/register', [UserController::class, 'store'])->name('user.store');
+Route::get('/mypage/profile', [UserController::class, 'showProfileForm'])->name('mypage.profile');
+Route::post('/mypage/profile', [UserController::class, 'storeProfile'])->name('profile.store');
+Route::put('/mypage/profile/{user_id}', [UserController::class, 'update'])->name('profile.update');

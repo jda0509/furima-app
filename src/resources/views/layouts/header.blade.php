@@ -23,7 +23,7 @@
                 </form>
             @else
                 <a href="/login" class="header__searchbox">
-                   c <input type="text" placeholder="なにをお探しですか？" />
+                    <input type="text" placeholder="なにをお探しですか？" />
                 </a>
             @endauth
             <nav class="header__content">
@@ -41,9 +41,13 @@
                         <li><a class="header__login" href="/login">ログイン</a></li>
                         <li><a class="header__mypage" href="/login">マイページ</a></li>
                         <li><a class="header__sell" href="/login">出品</a></li>
+                    @endauth
                 </ul>
             </nav>
         </div>
     </header>
+    <main>
+        @yield('content')
+    </main>
 </body>
 </html>

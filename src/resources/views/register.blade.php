@@ -11,7 +11,7 @@
 <body>
     <header class="header">
         <div class="header__logo">
-            <a href="/" class="header__logo__link">
+            <a href="/mypage/profile" class="header__logo__link">
                 <image class="header__logo__image" src="" alt="ロゴ">
             </a>
         </div>
@@ -24,34 +24,40 @@
             @csrf
                 <div class="register__content__name">
                     <div class="name__label">ユーザー名</div>
-                    <input type="text" name="name" value="" />
+                    <input type="text" name="name" value="{{ old('name') }}" />
                 </div>
                 <div class="error">
-                    @error('name')
-                    {{ $message }}
-                    @enderror
+                    @if ($errors->has('name'))
+                        @foreach ($errors->get('name') as $message)
+                            <p class="error_message">{{ $message }}</p>
+                        @endforeach
+                    @endif
                 </div>
                 <div class="register__content__email">
                     <div class="email__label">メールアドレス</div>
-                    <input type="email" name="email" value="" />
+                    <input type="email" name="email" value="{{ old('email') }}" />
                 </div>
                 <div class="error">
-                    @error('email')
-                    {{ $message }}
-                    @enderror
+                    @if ($errors->has('email'))
+                        @foreach ($errors->get('email') as $message)
+                            <p class="error_message">{{ $message }}</p>
+                        @endforeach
+                    @endif
                 </div>
                 <div class="register__content__password">
                     <div class="password__label">パスワード</div>
-                    <input type="password" name="password" value="" />
+                    <input type="password" name="password" value="{{ old('password') }}" />
                 </div>
                 <div class="error">
-                    @error('password')
-                    {{ $message }}
-                    @enderror
+                    @if ($errors->has('password'))
+                        @foreach ($errors->get('password') as $message)
+                            <p class="error_message">{{ $message }}</p>
+                        @endforeach
+                    @endif
                 </div>
                 <div class="register__content__password__confirmation">
                     <div class="password__confirmation__label">確認用パスワード</div>
-                    <input type="password" name="password__confirmation" value="" />
+                    <input type="password" name="password_confirmation" value="" />
                 </div>
                 <div class="error">
                     @error('password')
@@ -59,7 +65,7 @@
                     @enderror
                 </div>
                 <div class="register__content__button">
-                    <button class="register__btn">登録する</button>
+                    <button class="register__btn" type="submit">登録する</button>
                 </div>
             </form>
             <a href="/login" class="login__link">ログインはこちら</a>

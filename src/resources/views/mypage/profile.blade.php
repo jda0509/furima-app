@@ -8,7 +8,12 @@
 <div class="profile">
     <div class="profile__content">
         <h3 class="profile__content__title">プロフィール設定</h3>
-        <form action="" method="post" >
+        @if (isset($profile))
+            <form action = "{{ route('profile.update', ['user_id' => $user->id]) }}" method="POST">
+                @method('PUT')
+        @else
+            <form action="{{ route('profile.store') }}" method="POST" >
+        @endif
             @csrf
             <div class="profile__content__image">
                 @if (isset($user->profile->image))

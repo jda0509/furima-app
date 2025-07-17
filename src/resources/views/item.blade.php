@@ -10,9 +10,9 @@
         <img class="product__image__detail" alt="商品画像" src="">
     </div>
     <div class="product__detail">
-        <h2 class="product__detail__name">商品名がここに入る</h2>
-        <div class="product__detail__brand_name">ブランド名</div>
-        <div class="product__detail__price">¥金額（税込）</div>
+        <h2 class="product__detail__name">{{ $product->name }}</h2>
+        <div class="product__detail__brand_name">{{ $product->brand_name }}</div>
+        <div class="product__detail__price">¥{{ number_format ( $product->price )}}（税込）</div>
         <div class="product__detail__favorite">
         @auth
             {{-- いいね切り替えアイコン表示（ログインユーザーのみ） --}}
@@ -22,7 +22,7 @@
                 <img class="favorite" src="" alt="お気に入り未登録">
             @endif
         @endauth
-            <div class="favorite_count">{{ $product->likedUsers()->count() }}</div>
+            <div class="favorite_count">{{ $product->likesUsers()->count() }}</div>
         </div>
         <div class="product__detail__simple-comment">
             <img src="" alt="コメントアイコン" class="simple-comment-icon">
