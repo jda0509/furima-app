@@ -7,9 +7,9 @@
 
 <div class="main__content">
     <div class="main__content__tab">
-        <a href="" class="tab__recommend">おすすめ</a>
+        <a href="/" class="tab {{ request('tab') !== 'mylist' ? 'active' : '' }}">おすすめ</a>
         @auth
-        <a href="" class="tab__favorite">マイリスト</a>
+        <a href="/?tab=mylist" class="tab {{ request('tab') === 'mylist' ? 'active' : '' }}">マイリスト</a>
         @else
         <a href="/login" class="tab__favorite">マイリスト</a>
         @endauth
@@ -18,7 +18,7 @@
     <div class="product-list">
         @if (request('tab') === 'mylist' && Auth::check())
             {{-- マイリスト用一覧 --}}
-            @forelse ($likedProducts as $product)
+            @forelse ($likesProducts as $product)
                 <a href="{{ route('item.show' , [ 'item_id' => $product->id ]) }}" >
                     <img class="product__img" src="{{ $product->image }}" alt="{{ $product->name }}" >
                     <div class="product__name">{{ $product->name }}</div>

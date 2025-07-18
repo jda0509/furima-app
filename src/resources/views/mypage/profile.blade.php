@@ -9,10 +9,10 @@
     <div class="profile__content">
         <h3 class="profile__content__title">プロフィール設定</h3>
         @if (isset($profile))
-            <form action = "{{ route('profile.update', ['user_id' => $user->id]) }}" method="POST">
+            <form action = "{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
         @else
-            <form action="{{ route('profile.store') }}" method="POST" >
+            <form action="{{ route('profile.store') }}" method="POST" enctype="multipart/form-data">
         @endif
             @csrf
             <div class="profile__content__image">

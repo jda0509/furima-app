@@ -28,7 +28,7 @@ class User extends Authenticatable
     }
 
     public function likesProducts(){
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class,'product_user');
     }
 
     public function orders(){

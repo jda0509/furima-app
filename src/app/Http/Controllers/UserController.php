@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use App\Models\Profile;
 
@@ -45,6 +46,24 @@ class UserController extends Controller
             $profile -> image = $path;
             $profile -> save();
         }
+
+        return redirect()->route('index');
+    }
+
+    public function update(ProfileRequest $request)
+    {
+        $profile = Profile::where('user_id', Auth::id())->first();
+
+        if($request->hasFile('image')){
+            $imagePath = $request->file('image')->store('profile_images', 'public');
+            $profile->image = $imagePath;
+        }
+
+        $profile->postcode = $request->postcode;
+        $profile->address = $request->address;
+        $profile->building = $request->building;
+
+        $profile->save();
 
         return redirect()->route('index');
     }

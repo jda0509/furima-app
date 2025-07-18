@@ -16,7 +16,7 @@
         <div class="product__detail__favorite">
         @auth
             {{-- いいね切り替えアイコン表示（ログインユーザーのみ） --}}
-            @if($product->likedUsers->contains('id',auth()->id()))
+            @if($product->likesUsers->contains('id',auth()->id()))
                 <img class="favorite" src="" alt="お気に入り済み">
             @else
                 <img class="favorite" src="" alt="お気に入り未登録">
@@ -78,3 +78,5 @@
         @endauth
     </div>
 </div>
+
+@endsection

@@ -14,24 +14,25 @@
         <div class="header__inner">
             <div class="header__logo">
                 <a href="/" class="header__logo__link">
-                    <image class="header__logo__image" src="" alt="ロゴ">
+                    <img class="header__logo__image" src="" alt="ロゴ">
                 </a>
             </div>
+            <div class="header__center">
             @auth
                 <form action="/search" class="header__search" method="get" >
                     <input class="header__searchbox" type="text" name="keyword" placeholder="なにをお探しですか？">
                 </form>
             @else
                 <a href="/login" class="header__searchbox">
-                    <input type="text" placeholder="なにをお探しですか？" />
+                    <input class="header__searchbox" type="text" placeholder="なにをお探しですか？" />
                 </a>
             @endauth
+            </div>
             <nav class="header__content">
-                <ul>
+                <ul class="header__nav">
                     @auth
                         <li>
-                            <form class="header__logout" method="post" action="" >
-                            @csrf
+                            <form method="post" action="" >
                                 <button class="header__logout__button" type="submit">ログアウト</button>
                             </form>
                         </li>
