@@ -30,7 +30,7 @@
         </div>
         <div class="product__detail__buy">
             @auth
-            <a href="/sell" class="buy-button">購入手続きへ</a>
+            <a href="{{ route('purchase.create', [ 'item_id' => $product->id]) }}" class="buy-button">購入手続きへ</a>
             @else
             <a href="/login" class="buy-button">購入手続きへ</a>
             @endauth

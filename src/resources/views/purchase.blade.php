@@ -5,16 +5,15 @@
 
 @section('content')
 
-<div class="sell__main_content">
-    <form action="" method="post">
+<div class="buy__main_content">
+    <form action="{{ route('purchase.store') }}" method="post">
     @csrf
     <div class="buy__product">
-        @foreach( $products as $product )
-            <img class="product__img" src="{{ asset('storage/' . $product->img_url) }}" alt="{{ $product->name }}" >
-            <div class="product__name">{{ $product->name }}</div>
-            <div class="product__price">¥{{ number_format ( $product->price ) }}</div>
-        @endforeach
+        <img class="product__img" src="{{ $product->image }}" alt="{{ $product->name }}" >
+        <div class="product__name">{{ $product->name }}</div>
+        <div class="product__price">¥{{ number_format ( $product->price ) }}</div>
     </div>
+    <input type="hidden" name="product_id" value="{{ $product->id }}">
     <div class="payment_method">
         <div class="payment_method__label">支払い方法</div>
         <select name="payment_method" id="payment_method" class="payment_method__main" required>
@@ -41,7 +40,7 @@
             <span class="table__label__payment">決済方法</span>
         </div>
         <div class="table__value">
-            <span class="price__value">¥{{ number_format ( $products->price )}}</span>
+            <span class="price__value">¥{{ number_format ( $product->price )}}</span>
             <span class="payment__value" id="payment-summary">選択してください</span>
         </div>
         <script>
