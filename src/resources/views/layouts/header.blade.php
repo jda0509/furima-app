@@ -36,7 +36,7 @@
                                 <button class="header__logout__button" type="submit">ログアウト</button>
                             </form>
                         </li>
-                        <li><a class="header__mypage" href="/mypage">マイページ</a></li>
+                        <li><a class="header__mypage" href="{{ route('mypage.show') }}">マイページ</a></li>
                         <li><a class="header__sell" href="/sell">出品</a></li>
                     @else
                         <li><a class="header__login" href="/login">ログイン</a></li>

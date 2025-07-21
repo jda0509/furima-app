@@ -9,9 +9,25 @@ use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use App\Models\Profile;
+use App\Models\Product;
 
 class UserController extends Controller
 {
+    public function show()
+    {
+        $tab = request()->get('tab', 'sell');
+
+        $myProducts = [];
+        $myPurchases = [];
+
+        if ($tab === 'sell') {
+            $myProducts = Product::where('user_id', Auth::id())->get();
+        } elseif ($tab === 'buy') {
+            $myPurchases = Auth::user()->orders()->with('product')->get();
+        }
+
+        return view('mypage', compact('tab', 'myProducts', 'myPurchases'));
+    }
     public function store(RegisterRequest $request)
     {
         $user = User::create([

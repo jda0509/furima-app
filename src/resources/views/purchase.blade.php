@@ -28,7 +28,8 @@
             <a href="{{ route('purchase.address', ['item_id' => $product->id ]) }}" class="sending_address__link">変更する</a>
         </div>
         @if ($lastOrder)
-            <p class="last_order__address">{{ $lastOrder->sending_address}}</p>
+            <p class="last_order__postcode">{{ $lastOrder->sending_postcode }}</p>
+            <p class="last_order__address">{{ $lastOrder->sending_address }}</p>
         @else
             <p class="last_order__postcode">{{ Auth::user()->profile->postcode }}</p>
             <p class="last_order__address_building">{{ Auth::user()->profile->address }} {{ Auth::user()->profile->building }}</p>
@@ -41,11 +42,11 @@
         </div>
         <div class="table__value">
             <span class="price__value">¥{{ number_format ( $product->price )}}</span>
-            <span class="payment__value" id="payment-summary">選択してください</span>
+            <span class="payment__value" id="payment_summary">選択してください</span>
         </div>
         <script>
-            document.getElementById('payment-method').addEventListener('change',function(){
-                document.getElementById('payment-summary').textContent = this.value;
+            document.getElementById('payment_method').addEventListener('change',function(){
+                document.getElementById('payment_summary').textContent = this.value;
             });
         </script>
     </div>

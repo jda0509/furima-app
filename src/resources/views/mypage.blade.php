@@ -20,23 +20,23 @@
 
     <div class="product_list">
         @php
-            $tab = request('tab','list');
+            $tab = request()->get('tab', 'sell');
         @endphp
         <ul class="tab_menu">
-            <li><a href="{{ route('mypage') }}?tab=sell">出品した商品</li>
-            <li><a href="{{ route('mypage') }}?tab=buy">購入した商品</li>
+            <li><a href="{{ route('mypage.show') }}?tab=sell">出品した商品</li>
+            <li><a href="{{ route('mypage.show') }}?tab=buy">購入した商品</li>
         </ul>
         @if ($tab === 'sell')
             @foreach ($myProducts as $product)
                 <a href="{{ route('item.show' , [ 'item_id' => $product->id ]) }}" >
-                    <img class="product__img" src="{{ asset('storage/' . $product->img_url) }}" alt="{{} $product->name }}" >
+                    <img class="product__img" src="{{ asset('storage/' . $product->image ) }}" alt="{{ $product->name }}" >
                     <p>{{ $product->name }}</p>
                 </a>
             @endforeach
         @elseif ($tab === 'buy')
-            @foreach ( $purchasedOrders as $order)
-                <a href="{{ route('item.show' , [ 'item_id' => $product->id ]) }}" >
-                    <img class="product__img" src="{{ asset('storage/' . $product->img_url) }}" alt="{{} $product->name }}" >
+            @foreach ( $myPurchases as $order)
+                <a href="{{ route('item.show' , [ 'item_id' => $order->product->id ]) }}" >
+                    <img class="product__img" src="{{ asset('storage/' . $order->product->image) }}" alt="{{ $order->product->name }}" >
                     <p>【Sold】{{ $order->product->name}}</p>
                 </a>
             @endforeach
