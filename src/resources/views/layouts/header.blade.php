@@ -32,8 +32,9 @@
                 <ul class="header__nav">
                     @auth
                         <li>
-                            <form method="post" action="" >
-                                <button class="header__logout__button" type="submit">ログアウト</button>
+                            <form method="post" action="/logout" >
+                                @csrf
+                                <button class="header__logout__button">ログアウト</button>
                             </form>
                         </li>
                         <li><a class="header__mypage" href="{{ route('mypage.show') }}">マイページ</a></li>

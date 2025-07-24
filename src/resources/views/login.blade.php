@@ -20,7 +20,7 @@
     <div class="login">
         <div class="login__content">
         <h3 class="login__title">ログイン</h3>
-            <form action="" method="post">
+            <form action="{{ route('login') }}" method="post">
                 @csrf
                 <div class="login__content__email">
                     <div class="email__label">メールアドレス</div>

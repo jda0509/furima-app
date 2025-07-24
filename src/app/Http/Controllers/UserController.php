@@ -13,6 +13,20 @@ use App\Models\Product;
 
 class UserController extends Controller
 {
+    public function login(LoginRequest $request)
+    {
+        $credentials = $request->only('email','password');
+
+        if(Auth::attempt($credentials)){
+            $request->session()->regenerate();
+            return redirect()->intended('/');
+        }
+
+        return back()->withErrors([
+            'email' => 'ログイン情報が登録されていません',
+        ])->onlyInput('email');
+    }
+
     public function show()
     {
         $tab = request()->get('tab', 'sell');
@@ -28,6 +42,7 @@ class UserController extends Controller
 
         return view('mypage', compact('tab', 'myProducts', 'myPurchases'));
     }
+
     public function store(RegisterRequest $request)
     {
         $user = User::create([
@@ -43,12 +58,12 @@ class UserController extends Controller
 
     public function showProfileForm()
     {
-        return view('mypage.profile', [
-            'user' => Auth::user(),
-        ]);
+        $user = Auth::user();
+        $profile = $user->profile;
+        return view('mypage.profile', compact('user','profile'));
     }
 
-    public function storeProfile(ProfileRequest $request)
+    public function storeProfile(ProfileRequest $request, $user_id)
     {
         $profile = Profile::create([
             'user_id' => Auth::id(),
@@ -66,21 +81,37 @@ class UserController extends Controller
         return redirect()->route('index');
     }
 
-    public function update(ProfileRequest $request)
+    public function profile(Request $request)
     {
-        $profile = Profile::where('user_id', Auth::id())->first();
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'postcode' => 'nullable|string|max:8',
+            'address' => 'nullable|string|max:255',
+            'building' => 'nullable|string|max:255',
+            'image' => 'nullable|image|max:2048',
+        ]);
+
+        $user = Auth::user();
+        $user->name = $validated['name'];
+        $user->save();
+
+        $profile = $user->profile ?? new Profile();
+
+        $profile->user_id = $user->id;
+        $profile->postcode = $validated['postcode'];
+        $profile->address = $validated['address'];
+        $profile->building = $validated['building'];
 
         if($request->hasFile('image')){
-            $imagePath = $request->file('image')->store('profile_images', 'public');
-            $profile->image = $imagePath;
+            $image = $request->file('image')->store('profile_images', 'public');
+            $profile->image = $image;
         }
 
-        $profile->postcode = $request->postcode;
-        $profile->address = $request->address;
-        $profile->building = $request->building;
+            $profile->save();
 
-        $profile->save();
+            $user->update(['name' => $validated['name']]);
+            $user->save();
 
-        return redirect()->route('index');
+            return redirect()->route('mypage.profile');
     }
 }

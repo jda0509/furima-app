@@ -19,12 +19,16 @@ use App\Http\Controllers\OrderController;
 
 Route::get('/', [ProductController::class,'index'])->name('index');
 Route::get('/item/{item_id}', [ProductController::class, 'show'])->name('item.show');
+Route::post('/login', [UserController::class, 'login'])->name('login');
 Route::post('/register', [UserController::class, 'store'])->name('user.store');
 Route::get('/mypage', [UserController::class, 'show'])->name('mypage.show');
 Route::get('/mypage/profile', [UserController::class, 'showProfileForm'])->name('mypage.profile');
-Route::post('/mypage/profile', [UserController::class, 'storeProfile'])->name('profile.store');
-Route::put('/mypage/profile/{user_id}', [UserController::class, 'update'])->name('profile.update');
+Route::post('/mypage/profile/{user_id}', [UserController::class, 'storeProfile'])->name('profile.store');
 Route::get('/purchase/{item_id}', [OrderController::class, 'create'])->name('purchase.create');
 Route::post('/purchase', [OrderController::class, 'store'])->name('purchase.store');
 Route::get('/purchase/address/{item_id}', [OrderController::class,'createSending'])->name('purchase.address');
 Route::post('/purchase/address/{item_id}', [OrderController::class,'store'])->name('sending.store');
+Route::put('/mypage/profile', [UserController::class, 'profile'])->name('mypage.profile.update');
+Route::get('/mypage', [UserController::class, 'show'])->name('mypage.show');
+Route::get('/sell', [ProductController::class, 'create'])->name('sell');
+Route::post('/item', [ProductController::class, 'store'])->name('items.store');

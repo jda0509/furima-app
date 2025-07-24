@@ -13,7 +13,8 @@ class Profile extends Model
         'user_id',
         'postcode',
         'address',
-        'building'
+        'building',
+        'image'
     ];
 
     public function user(){
