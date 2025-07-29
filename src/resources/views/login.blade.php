@@ -24,7 +24,7 @@
                 @csrf
                 <div class="login__content__email">
                     <div class="email__label">メールアドレス</div>
-                    <input type="email" name="email" value=""/>
+                    <input class="email__input" type="email" name="email" value=""/>
                 </div>
                 <div class="error">
                     @error('email')
@@ -33,7 +33,7 @@
                 </div>
                 <div class="login__content__password">
                     <div class="password__label">パスワード</div>
-                    <input type="password" name="password" value="" />
+                    <input class="password__input" type="password" name="password" value="" />
                 </div>
                 <div class="error">
                     @error('password')
@@ -44,7 +44,9 @@
                     <button class="login__btn" type="submit">ログインする</button>
                 </div>
             </form>
-            <a href="/register" class="register__link">会員登録はこちら</a>
+            <div class="register">
+                <a href="/register" class="register__link">会員登録はこちら</a>
+            </div>
         </div>
     </div>
 </body>

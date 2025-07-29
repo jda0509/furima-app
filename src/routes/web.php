@@ -31,4 +31,4 @@ Route::post('/purchase/address/{item_id}', [OrderController::class,'store'])->na
 Route::put('/mypage/profile', [UserController::class, 'profile'])->name('mypage.profile.update');
 Route::get('/mypage', [UserController::class, 'show'])->name('mypage.show');
 Route::get('/sell', [ProductController::class, 'create'])->name('sell');
-Route::post('/item', [ProductController::class, 'store'])->name('items.store');
+Route::post('/items', [ProductController::class, 'store'])->name('items.store');

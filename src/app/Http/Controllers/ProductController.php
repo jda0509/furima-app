@@ -41,14 +41,15 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $conditions = Condition::all();
-        return view('sell',compact('categories','conditions'));
+        return view('sell', compact('categories', 'conditions'));
     }
 
     public function store(ExhibitionRequest $request)
     {
         $validated = $request->validated();
+        \Log::debug('Validated data:', $validated);
 
-        $product = new Item();
+        $product = new Product();
         $product->user_id = Auth::id();
         $product->condition_id = $validated['condition_id'];
         $product->name = $validated['name'];
@@ -57,15 +58,15 @@ class ProductController extends Controller
         $product->price = $validated['price'];
 
         if ($request->hasFile('image')){
-            $image = $request->file('image')->store('items', 'public');
-            $product->image = $image;
+            $path = $request->file('image')->store('images', 'public');
+            $product->image = $path;
         }
 
+        \Log::debug('Saving product...', ['data' => $validated]);
         $product->save();
+        \Log::debug('Product save:', ['id' => $product->id]);
 
-        if (isset($validated['categories'])){
-            $product->categories()->sync($validated['categories']);
-        }
+        $product->categories()->sync($validated['categories']);
 
         return redirect()->route('mypage.show');
     }

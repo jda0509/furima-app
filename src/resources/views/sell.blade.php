@@ -6,8 +6,17 @@
 @section('content')
 
 <div class="sell_content">
+    @if ($errors->any())
+    <div class="error_messages">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li style="color:red;">{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <h3>商品の出品</h3>
-    <form action="{{ route('items.store') }}" method="post">
+    <form action="{{ route('items.store') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="product_img">
         <div class="img_label">商品画像</div>

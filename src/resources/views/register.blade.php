@@ -24,7 +24,7 @@
             @csrf
                 <div class="register__content__name">
                     <div class="name__label">ユーザー名</div>
-                    <input type="text" name="name" value="{{ old('name') }}" />
+                    <input class="name__input" type="text" name="name" value="{{ old('name') }}" />
                 </div>
                 <div class="error">
                     @if ($errors->has('name'))
@@ -35,7 +35,7 @@
                 </div>
                 <div class="register__content__email">
                     <div class="email__label">メールアドレス</div>
-                    <input type="email" name="email" value="{{ old('email') }}" />
+                    <input class="email__input" type="email" name="email" value="{{ old('email') }}" />
                 </div>
                 <div class="error">
                     @if ($errors->has('email'))
@@ -46,7 +46,7 @@
                 </div>
                 <div class="register__content__password">
                     <div class="password__label">パスワード</div>
-                    <input type="password" name="password" value="{{ old('password') }}" />
+                    <input class="password__input" type="password" name="password" value="{{ old('password') }}" />
                 </div>
                 <div class="error">
                     @if ($errors->has('password'))
@@ -56,8 +56,8 @@
                     @endif
                 </div>
                 <div class="register__content__password__confirmation">
-                    <div class="password__confirmation__label">確認用パスワード</div>
-                    <input type="password" name="password_confirmation" value="" />
+                    <div class="password__label">確認用パスワード</div>
+                    <input class="password__input" type="password" name="password_confirmation" value="" />
                 </div>
                 <div class="error">
                     @error('password')
@@ -68,6 +68,8 @@
                     <button class="register__btn" type="submit">登録する</button>
                 </div>
             </form>
-            <a href="/login" class="login__link">ログインはこちら</a>
+            <div class="login">
+                <a href="/login" class="login__link">ログインはこちら</a>
+            </div>
         </div>
     </div>
