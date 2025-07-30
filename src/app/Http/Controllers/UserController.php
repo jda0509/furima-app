@@ -34,13 +34,15 @@ class UserController extends Controller
         $myProducts = [];
         $myPurchases = [];
 
+        $user = Auth::user();
+
         if ($tab === 'sell') {
             $myProducts = Product::where('user_id', Auth::id())->get();
         } elseif ($tab === 'buy') {
             $myPurchases = Auth::user()->orders()->with('product')->get();
         }
 
-        return view('mypage', compact('tab', 'myProducts', 'myPurchases'));
+        return view('mypage', compact('tab', 'myProducts', 'myPurchases','user'));
     }
 
     public function store(RegisterRequest $request)
