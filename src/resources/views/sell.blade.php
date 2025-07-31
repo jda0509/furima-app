@@ -15,17 +15,17 @@
         </ul>
     </div>
     @endif
-    <h3>商品の出品</h3>
+    <h3 class="sell_title">商品の出品</h3>
     <form action="{{ route('items.store') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="product_img">
         <div class="img_label">商品画像</div>
         <div class="image-upload-box">
-            <label for="image_input" class="block mb-2">画像を選択する</label>
-            <input type="file" name="image" id="image_input" class="mb-4" accept="image/*">
-            <div id="preview_container" class="w-64 h-64 border border-gray-300 flex items-center justify-center">
-                <img id="image_preview" src="#" alt="" class="hidden object-cover w-full h-full" />
-            </div>
+            <label for="image_input" class="file_label">画像を選択する</label>
+            <input type="file" name="image" id="image_input" class="hidden_file_input" accept="image/*">
+        </div>
+        <div id="preview_container" class="w-64 h-64 border border-gray-300 flex items-center justify-center">
+            <img id="image_preview" src="#" alt="" class="hidden object-cover w-full h-full" />
         </div>
     </div>
     <div class="product_category">
@@ -42,32 +42,34 @@
     </div>
     <div class="product_condition">
         <div class="condition_label">商品の状態</div>
-        <select name="condition_id" id="condition_id">
-            <option value="">選択してください</option>
-            @foreach ($conditions as $condition)
-                <option value="{{ $condition->id }}">
-                    {{ $condition->name }}
-                </option>
-            @endforeach
-        </select>
+        <div class="select-box">
+            <select name="condition_id" id="condition_id">
+                <option value="">選択してください</option>
+                @foreach ($conditions as $condition)
+                    <option value="{{ $condition->id }}">
+                        {{ $condition->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
     </div>
     <div class="product_name-detail">
         <div class="name-detail_label">商品名と説明</div>
         <div class="product_name">
             <div class="name_label">商品名</div>
-            <input type="text" name="name" value="{{ old('name') }}" />
+            <input class="product_input" type="text" name="name" value="{{ old('name') }}" />
         </div>
         <div class="brand_name">
             <div class="brand_label">ブランド名</div>
-            <input type="text" name="brand_name" value="{{ old('brand_name') }}" />
+            <input class="product_input" type="text" name="brand_name" value="{{ old('brand_name') }}" />
         </div>
         <div class="product_detail">
             <div class="detail_label">商品の説明</div>
-            <input type="text" name="explanation" value="{{ old('explanation') }}" />
+            <input class="product_detail_input" type="text" name="explanation" value="{{ old('explanation') }}" />
         </div>
         <div class="product price">
             <div class="price_label">販売価格</div>
-            <input type="integer" name="price" placeholder="¥" value="{{ old('price') }}" />
+            <input class="product_input" type="integer" name="price" placeholder="¥" value="{{ old('price') }}" />
         </div>
     </div>
     <div class="sell_btn">
