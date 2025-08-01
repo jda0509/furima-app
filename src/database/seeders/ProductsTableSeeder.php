@@ -46,7 +46,7 @@ class ProductsTableSeeder extends Seeder
             'user_id' => 2,
             'condition_id' => 4,
             'image' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Leather+Shoes+Product+Photo.jpg',
-            'brand_name' => 'null',
+            'brand_name' => null,
             'explanation' => 'クラシックなデザインの革靴',
             'price' => 4000,
         ]);
@@ -55,7 +55,7 @@ class ProductsTableSeeder extends Seeder
             'user_id' => 1,
             'condition_id' => 1,
             'image' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Living+Room+Laptop.jpg',
-            'brand_name' => 'null',
+            'brand_name' => null,
             'explanation' => '高性能なノートパソコン',
             'price' => 45000,
         ]);
@@ -73,7 +73,7 @@ class ProductsTableSeeder extends Seeder
             'user_id' => 2,
             'condition_id' => 3,
             'image' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Purse+fashion+pocket.jpg',
-            'brand_name' => 'null',
+            'brand_name' => null,
             'explanation' => 'おしゃれなショルダーバッグ',
             'price' => '3500',
         ]);

@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Condition;
+use App\Models\Comment;
 use App\Http\Requests\ExhibitionRequest;
+use App\Http\Requests\CommentRequest;
 
 
 class ProductController extends Controller
@@ -33,6 +35,8 @@ class ProductController extends Controller
     public function show($item_id)
     {
         $product = Product::findOrFail($item_id);
+
+        $product = Product::with('comments.user')->findOrFail($item_id);
 
         return view('item', compact('product'));
     }
@@ -69,5 +73,29 @@ class ProductController extends Controller
         $product->categories()->sync($validated['categories']);
 
         return redirect()->route('mypage.show');
+    }
+
+    public function toggleLike(Product $product)
+    {
+        $user = auth()->user();
+
+        if($product->likesUsers()->where('user_id', $user->id)->exists()){
+            $product->likesUsers()->detach($user->id);
+        } else {
+            $product->likesUsers()->attach($user->id);
+        }
+
+        return back();
+    }
+
+    public function comment(CommentRequest $request, Product $item)
+    {
+        $comment = new Comment();
+        $comment->user_id = auth()->id();
+        $comment->product_id = $item->id;
+        $comment->comment = $request->comment;
+        $comment->save();
+
+        return redirect()->route('item.show', ['item_id' => $item->id]);
     }
 }
