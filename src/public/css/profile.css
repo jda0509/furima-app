@@ -1,0 +1,75 @@
+.profile{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.profile__content{
+    width: 680px;
+    margin: 0 auto;
+}
+
+.file_label{
+    color: red;
+    display: inline-block;
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    margin-left: 50px;
+}
+
+.hidden__img__submit{
+    display: none;
+}
+
+.profile__content__image{
+    text-align: left;
+    margin: 50px 0;
+}
+
+.profile__content__image img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile__content__name,
+.profile__content__postcode,
+.profile__content__address,
+.profile__content__building{
+    width: 680px;
+    margin: 0 auto;
+}
+
+.profile__name__label,
+.profile__postcode__label,
+.profile__address__label,
+.profile__building__label{
+    margin-top: 30px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.name__input,
+.postcode__input,
+.address__input,
+.building__input{
+    width: 680px;
+    height: 37px;
+    border-radius: 4px;
+    border: 1px solid #5F5F5F;
+}
+
+.profile__button{
+    width: 680px;
+    height: 37px;
+    border-radius: 4px;
+    margin-top: 50px;
+    background-color: #FF5555;
+    color: white;
+    border: none;
+    font-weight: bold;
+}
