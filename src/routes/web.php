@@ -33,3 +33,5 @@ Route::get('/sell', [ProductController::class, 'create'])->name('sell');
 Route::post('/items', [ProductController::class, 'store'])->name('items.store');
 Route::post('/products/{product}/like', [ProductController::class, 'toggleLike'])->name('products.like')->middleware('auth');
 Route::post('/items/{item}/comments', [ProductController::class, 'comment'])->name('comments.store');
+
+Route::get('/mylist', [ProductController::class, 'myList'])->name('mylist');

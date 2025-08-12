@@ -19,8 +19,8 @@
             </div>
             <div class="header__center">
             @auth
-                <form action="/search" class="header__search" method="get" >
-                    <input class="header__searchbox" type="text" name="keyword" placeholder="なにをお探しですか？">
+                <form action="{{ route('index') }}" class="header__search" method="get" >
+                    <input class="header__searchbox" type="text" name="search" placeholder="なにをお探しですか？" value="{{ request('search') }}">
                 </form>
             @else
                 <a href="/login" class="header__searchbox">

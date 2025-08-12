@@ -27,9 +27,26 @@ class ProductController extends Controller
             $likesProducts = null;
         }
 
-        $products = Product::all();
+        $tab = $request->query('tab', 'sell');
+        $search = $request->query('search');
 
-        return view('index', compact('products','likesProducts','tab'));
+        $productsQuery = Product::query();
+        if($search){
+            $productsQuery->where('name', 'like', '%' . $search . '%');
+        }
+
+        $likesProducts = null;
+        if ($tab === 'mylist' && Auth::check()){
+            $likesQuery = Auth::user()->likesProducts();
+            if($search){
+                $likesQuery->where('name', 'like', '%' . $search . '%');
+            }
+            $likesProducts = $likesQuery->get();
+        }
+
+        $products = $productsQuery->get();
+
+        return view('index', compact('products','likesProducts','tab','search'));
     }
 
     public function show($item_id)
@@ -97,5 +114,18 @@ class ProductController extends Controller
         $comment->save();
 
         return redirect()->route('item.show', ['item_id' => $item->id]);
+    }
+
+    public function myList(Request $request)
+    {
+        $query = Product::whereIn('id', auth()->user()->favorites->pluck('product_id'));
+
+        if ($request->filled('search')){
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        $products = $query->get();
+
+        return view('products.mylist', compact('products'));
     }
 }

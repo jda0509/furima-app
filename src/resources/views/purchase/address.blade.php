@@ -6,7 +6,7 @@
 @section('content')
 
 <div class="address">
-    <h3 class="address_title">住所の変更</h3>
+    <h2 class="address_title">住所の変更</h2>
     <form action="{{ route('sending.store',['item_id' => $product->id ])}}" method="post">
         @csrf
         <div class="address_main">
