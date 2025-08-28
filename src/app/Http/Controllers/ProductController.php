@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Condition;
 use App\Models\Comment;
+use App\Models\Order;
 use App\Http\Requests\ExhibitionRequest;
 use App\Http\Requests\CommentRequest;
 
@@ -55,7 +56,9 @@ class ProductController extends Controller
 
         $product = Product::with('comments.user')->findOrFail($item_id);
 
-        return view('item', compact('product'));
+        $isSold = Order::where('product_id', $product->id)->exists();
+
+        return view('item', compact('product', 'isSold'));
     }
 
     public function create()

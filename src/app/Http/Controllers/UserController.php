@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\LoginRequest;
@@ -105,7 +106,7 @@ class UserController extends Controller
         $profile->building = $validated['building'];
 
         if($request->hasFile('image')){
-            $image = $request->file('image')->store('profile_images', 'public');
+            $image = $request->file('image')->store('images', 'public');
             $profile->image = $image;
         }
 

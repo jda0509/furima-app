@@ -53,3 +53,7 @@
 .product{
     text-align: left;
 }
+
+.product_detail{
+    display: flex;
+}

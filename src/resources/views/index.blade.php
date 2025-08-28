@@ -24,8 +24,13 @@ use Illuminate\Support\Str;
             {{-- マイリスト用一覧 --}}
             @forelse ($likesProducts as $product)
                 <a href="{{ route('item.show' , [ 'item_id' => $product->id, 'search' => request('search'),'tab' => request('tab') ]) }}" >
-                    <img class="product__img" src="{{ Str::startsWith($product->image, 'http') ? $product->image : asset('storage/' .$product->image) }}" alt="{{ $product->name }}" >
-                    <div class="product__name">{{ $product->name }}</div>
+                        <img class="product__img" src="{{ Str::startsWith($product->image, 'http') ? $product->image : asset('storage/' .$product->image) }}" alt="{{ $product->name }}" >
+                        <div class="product_detail">
+                        @if($product->order)
+                            <span class="sold">【Sold】</span>
+                        @endif
+                        <div class="product">{{ $product->name }}</div>
+                    </div>
                 </a>
             @empty
                 <p class="message">お気に入りの商品がありません。</p>
@@ -35,8 +40,13 @@ use Illuminate\Support\Str;
             @forelse ($products as $product)
                 <a href="{{ route('item.show' , [ 'item_id' => $product->id, 'search' => request('search'), 'tab' => request('tab') ]) }}" >
                     <img class="product__img" src="{{ Str::startsWith($product->image, 'http') ? $product->image : asset('storage/' .$product->image) }}" alt="{{ $product->name }}" >
-                    <div class="product">{{ $product->name }}</div>
-                </a>
+                    <div class="product_detail">
+                        @if($product->order)
+                            <span class="sold">【Sold】</span>
+                        @endif
+                        <div class="product">{{ $product->name }}</div>
+                    </div>
+                    </a>
             @empty
                 <p class="message">商品がまだ登録されていません</p>
             @endforelse

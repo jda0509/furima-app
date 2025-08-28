@@ -12,7 +12,7 @@
     <header class="header">
         <div class="header__logo">
             <a href="/" class="header__logo__link">
-                <image class="header__logo__image" src="" alt="ロゴ">
+                <image class="header__logo__image" src="{{ asset('storage/images/logo.svg') }}" alt="ロゴ">
             </a>
         </div>
     </header>
@@ -25,20 +25,20 @@
                 <div class="login__content__email">
                     <div class="email__label">メールアドレス</div>
                     <input class="email__input" type="email" name="email" value=""/>
-                </div>
-                <div class="error">
-                    @error('email')
-                    {{ $message }}
-                    @enderror
+                    <div class="error">
+                        @error('email')
+                        {{ $message }}
+                        @enderror
+                    </div>
                 </div>
                 <div class="login__content__password">
                     <div class="password__label">パスワード</div>
                     <input class="password__input" type="password" name="password" value="" />
-                </div>
-                <div class="error">
-                    @error('password')
-                    {{ $message }}
-                    @enderror
+                    <div class="error">
+                        @error('password')
+                        {{ $message }}
+                        @enderror
+                    </div>
                 </div>
                 <div class="login__content__submit">
                     <button class="login__btn" type="submit">ログインする</button>

@@ -19,7 +19,8 @@
 }
 
 .login__content__email{
-    width: 680px;
+    width: 100%;
+    max-width: 680px;
     margin: 0 auto;
 }
 
@@ -29,14 +30,17 @@
 }
 
 .email__input{
-    width: 680px;
+    width: 100%;
+    max-width: 680px;
     height: 37px;
     border-radius: 4px;
     border: 1px solid #5F5F5F;
+    box-sizing: border-box;
 }
 
 .login__content__password{
-    width:680px;
+    width: 100%;
+    max-width: 680px;
     margin: 0 auto;
 }
 
@@ -47,14 +51,17 @@
 }
 
 .password__input{
-    width: 680px;
+    width: 100%;
+    max-width: 680px;
     height: 37px;
     border-radius: 4px;
     border: 1px solid #5F5F5F;
+    box-sizing: border-box;
 }
 
 .login__content__submit{
-    width: 680px;
+    width: 100%;
+    max-width: 680px;
     height: 37px;
     margin: 0 auto;
 }
@@ -68,8 +75,10 @@
     color: white;
     border-radius: 5px;
     padding: 5px;
-    width: 680px;
+    width: 100%;
+    max-width: 680px;
     border: none;
+    box-sizing: border-box;
 }
 
 .register{
@@ -81,4 +90,12 @@
 .register__link{
     text-decoration: none;
     color: #0073CC;
+}
+
+.error{
+    width: 100%;
+    max-width: 680px;
+    margin: 15px auto 0;
+    color: red;
+    text-align: left;
 }

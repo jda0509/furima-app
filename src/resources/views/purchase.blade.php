@@ -16,6 +16,7 @@
                 <div class="product__price">¥{{ number_format ( $product->price ) }}</div>
             </div>
         </div>
+        </form>
         <input type="hidden" name="product_id" value="{{ $product->id }}">
         <div class="payment_method">
             <div class="payment_method__label">支払い方法</div>
@@ -36,10 +37,17 @@
         <div class="last_order__sending">
             @if ($lastOrder)
                 <p class="last_order__postcode">〒{{ $lastOrder->sending_postcode }}</p>
-                <p class="last_order__address">{{ $lastOrder->sending_address }}</p>
+                <p class="last_order__address">
+                    {{ $lastOrder->sending_address }}
+                    @if (!empty($lastOrder->sending_building))
+                        {{ $lastOrder->sending_building }}
+                    @endif
+                </p>
             @elseif (Auth::check())
                 <p class="last_order__postcode">〒{{ Auth::user()->profile->postcode }}</p>
-                <p class="last_order__address_building">{{ Auth::user()->profile->address }} {{ Auth::user()->profile->building }}</p>
+                <p class="last_order__address_building">
+                    {{ Auth::user()->profile->address }} {{ Auth::user()->profile->building }}
+                </p>
             @endif
         </div>
     </div>
@@ -54,7 +62,10 @@
                 <span class="payment__value" id="payment_summary">選択してください</span>
             </div>
         </div>
-        <button class="buy__product__submit" type="submit">購入する</button>
+        <form action="{{ route('checkout.start') }}" method="POST">
+            @csrf
+            <input type="hidden" name="item_id" value="{{ $product->id }}">
+            <button class="buy__button" type="submit">購入する</button>
         </form>
     </div>
     <script>

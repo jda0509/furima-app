@@ -6,15 +6,6 @@
 @section('content')
 
 <div class="sell_content">
-    @if ($errors->any())
-    <div class="error_messages">
-        <ul>
-            @foreach($errors->all() as $error)
-                <li style="color:red;">{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
     <h3 class="sell_title">商品の出品</h3>
     <form action="{{ route('items.store') }}" method="post" enctype="multipart/form-data">
     @csrf
@@ -27,6 +18,11 @@
         <div id="preview_container" class="w-64 h-64 border border-gray-300 flex items-center justify-center">
             <img id="image_preview" src="#" alt="" class="hidden object-cover w-full h-full" />
         </div>
+        <div class="error">
+            @error('image')
+            {{ $message }}
+            @enderror
+        </div>
     </div>
     <div class="product_category">
         <div class="category_label">商品の詳細</div>
@@ -38,6 +34,11 @@
                     {{ $category->name }}
                 </label>
             @endforeach
+            <div class="error">
+                @error('categories')
+                {{ $message }}
+                @enderror
+            </div>
         </div>
     </div>
     <div class="product_condition">
@@ -52,12 +53,22 @@
                 @endforeach
             </select>
         </div>
+        <div class="error">
+            @error('condition_id')
+                {{ $message }}
+            @enderror
+        </div>
     </div>
     <div class="product_name-detail">
         <div class="name-detail_label">商品名と説明</div>
         <div class="product_name">
             <div class="name_label">商品名</div>
             <input class="product_input" type="text" name="name" value="{{ old('name') }}" />
+            <div class="error">
+                @error('name')
+                {{ $message }}
+                @enderror
+            </div>
         </div>
         <div class="brand_name">
             <div class="brand_label">ブランド名</div>
@@ -66,10 +77,20 @@
         <div class="product_detail">
             <div class="detail_label">商品の説明</div>
             <input class="product_detail_input" type="text" name="explanation" value="{{ old('explanation') }}" />
+            <div class="error">
+                @error('explanation')
+                {{ $message }}
+                @enderror
+            </div>
         </div>
         <div class="product price">
             <div class="price_label">販売価格</div>
             <input class="product_input" type="integer" name="price" placeholder="¥" value="{{ old('price') }}" />
+            <div class="error">
+                @error('price')
+                {{ $message }}
+                @enderror
+            </div>
         </div>
     </div>
     <div class="sell_btn">

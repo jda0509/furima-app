@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,7 @@ Route::post('/products/{product}/like', [ProductController::class, 'toggleLike']
 Route::post('/items/{item}/comments', [ProductController::class, 'comment'])->name('comments.store');
 
 Route::get('/mylist', [ProductController::class, 'myList'])->name('mylist');
+
+Route::post('/checkout', [OrderController::class, 'startCheckout'])->name('checkout.start')->middleware('auth');
+Route::get('/checkout/success', [OrderController::class, 'success'])->name('checkout.success');
+Route::post('/stripe/webhook', [OrderController::class, 'webhook'])->name('stripe.webhook');

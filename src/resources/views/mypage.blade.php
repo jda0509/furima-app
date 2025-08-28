@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
             @if (isset($user->profile->image))
                 <img src="{{ Str::startsWith($user->profile->image, 'http') ? $user->profile->image : asset('storage/' . $user->profile->image) }}" alt="プロフィール画像" >
             @else
-                <img src="" alt="デフォルト画像">
+                <img src="{{ asset('storage/images/default_icon.png') }}" alt="デフォルト画像">
             @endif
         </div>
         <div class="user_info_name">{{ $user->name }}</div>

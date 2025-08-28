@@ -19,12 +19,13 @@
         @endif
             <div class="profile__content__image">
                 @if (isset($user->profile->image))
-                    <img src="{{ Str::startWith($user->profile->image, 'http') ? $user->profile->image : asset('storage/' . $user->profile->image) }}" alt="プロフィール画像" >
+                    <img src="{{ Str::startsWith($user->profile->image, 'http') ? $user->profile->image : asset('storage/' . $user->profile->image) }}" alt="プロフィール画像" >
                 @else
-                    <img src="" alt="デフォルト画像">
+                    <img src="{{ asset('storage/images/default_icon.png') }}" alt="デフォルト画像">
                 @endif
                 <label for="image_input" class="file_label">画像を選択する</label>
-                <input class="hidden__img__submit" type="file" name="image" accept="image/*">
+                <input id="image_input" class="hidden__img__submit" type="file" name="image" accept="image/*">
+                <p id="file_name" class="mt-2 text-sm text-gray-500"></p>
             </div>
             <div class="profile__content__name">
                 <div class="profile__name__label">ユーザー名</div>
@@ -61,6 +62,15 @@
         </form>
     </div>
 </div>
+
+<script>
+    document.getElementById('image_input').addEventListener('change', function(event){
+        const file = event.target.files[0];
+        if (file) {
+            document.getElementById('file_name').textContent = "選択されたファイル: " +file.name;
+        }
+    });
+</script>
 
 
 @endsection

@@ -46,11 +46,15 @@ use Illuminate\Support\Str;
                 </div>
             </div>
             <div class="product__detail__buy">
-                @auth
-                <a href="{{ route('purchase.create', [ 'item_id' => $product->id]) }}" class="buy-button">購入手続きへ</a>
+                @if ($product->order()->exists())
+                    <div class="sold-badge">Sold</div>
                 @else
-                <a href="/login" class="buy-button">購入手続きへ</a>
-                @endauth
+                    @auth
+                    <a href="{{ route('purchase.create', [ 'item_id' => $product->id]) }}" class="buy-button">購入手続きへ</a>
+                    @else
+                    <a href="/login" class="buy-button">購入手続きへ</a>
+                    @endauth
+                @endif
             </div>
             <div class="product__explain">
                 <h2 class="product__explain__title">商品説明</h2>
@@ -77,14 +81,14 @@ use Illuminate\Support\Str;
                     <div class="product__comment">
                         @auth
                             <div class="product__comment__user">
-                                <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="アイコン" class="comment__user__image">
+                                <img src="{{ asset('storage/images/user_icon.png'. Auth::user()->image) }}" alt="アイコン" class="comment__user__image">
                                 <div class="comment__user__name" >{{ Auth::user()->name }}</div>
                             </div>
                             <div class="comment__content">{{ $comment->comment }}</div>
                         @endauth
                         @guest
                             <div class="product__comment__user">
-                                <img src="{{ asset('storage/') }}" alt="adminアイコン" class="comment__user__image">
+                                <img src="{{ asset('storage/images/default_icon.png') }}" alt="adminアイコン" class="comment__user__image">
                                 <p class="comment__user__name">admin</p>
                             </div>
                             <div class="comment__content"></div>

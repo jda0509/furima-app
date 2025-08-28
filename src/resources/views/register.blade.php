@@ -12,7 +12,7 @@
     <header class="header">
         <div class="header__logo">
             <a href="/mypage/profile" class="header__logo__link">
-                <image class="header__logo__image" src="" alt="ロゴ">
+                <image class="header__logo__image" src="{{ asset('storage/images/logo.svg') }}" alt="ロゴ">
             </a>
         </div>
     </header>
@@ -58,11 +58,11 @@
                 <div class="register__content__password__confirmation">
                     <div class="password__label">確認用パスワード</div>
                     <input class="password__input" type="password" name="password_confirmation" value="" />
-                </div>
-                <div class="error">
-                    @error('password')
-                    {{ $message }}
-                    @enderror
+                    <div class="error">
+                        @error('password')
+                            <p class="error_message">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
                 <div class="register__content__button">
                     <button class="register__btn" type="submit">登録する</button>
