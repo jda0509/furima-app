@@ -100,6 +100,11 @@ use Illuminate\Support\Str;
                 @csrf
                     <textarea name="comment" id="" class="comment__main__content"></textarea>
                 @auth
+                    <div class="error">
+                        @error('comment')
+                        {{ $message }}
+                        @enderror
+                    </div>
                     <button class="comment-btn" type="submit">コメントを送信する</button>
                 @else
                     <a href="/login" class="comment-btn">コメントを送信する</a>

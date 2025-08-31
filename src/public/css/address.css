@@ -45,3 +45,10 @@
     border: none;
     font-weight: bold;
 }
+
+.error{
+    color: red;
+    max-width: 680px;
+    width: 100%;
+    text-align: left;
+}

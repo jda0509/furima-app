@@ -161,3 +161,13 @@
     width: 100%;
     border: none;
 }
+
+.address_error{
+    color: red;
+    font-weight: normal;
+}
+
+.payment_error{
+    color: red;
+    margin-left: 50px;
+}

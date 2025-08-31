@@ -84,7 +84,7 @@ class UserController extends Controller
         return redirect()->route('index');
     }
 
-    public function profile(Request $request)
+    public function profile(ProfileRequest $request)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',

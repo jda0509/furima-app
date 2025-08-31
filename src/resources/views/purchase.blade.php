@@ -27,6 +27,11 @@
                     <option value="カード支払い">カード支払い</option>
                 </select>
             </div>
+            <div class="payment_error">
+                @error('payment_method')
+                {{ $message }}
+                @enderror
+            </div>
         </div>
         <div class="sending_address">
             <div class="sending_address__label">配送先</div>
@@ -49,6 +54,11 @@
                     {{ Auth::user()->profile->address }} {{ Auth::user()->profile->building }}
                 </p>
             @endif
+            <div class="address_error">
+                @error('address')
+                {{ $message }}
+                @enderror
+            </div>
         </div>
     </div>
     <div class="buy__right">

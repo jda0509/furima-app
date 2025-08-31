@@ -73,7 +73,7 @@ class OrderController extends Controller
             ->route('purchase.create', ['item_id' => $product->id]);
     }
 
-    public function startCheckout(Request $request)
+    public function startCheckout(PurchaseRequest $request)
     {
         $request->validate([
             'item_id' => ['required', 'integer', 'exists:products,id'],

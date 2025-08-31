@@ -73,3 +73,10 @@
     border: none;
     font-weight: bold;
 }
+
+.error{
+    width: 100%;
+    max-width: 680px;
+    color: red;
+    text-align: left;
+}
