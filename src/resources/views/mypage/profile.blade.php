@@ -14,7 +14,7 @@
                 @method('PUT')
                 @csrf
         @else
-            <form action="{{ route('profile.store', ['user_id' => $user->id]) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('profile.store', ['user_id' => $user->id ?? 0]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
         @endif
             <div class="profile__content__image">

@@ -27,33 +27,27 @@
                     <input class="name__input" type="text" name="name" value="{{ old('name') }}" />
                 </div>
                 <div class="error">
-                    @if ($errors->has('name'))
-                        @foreach ($errors->get('name') as $message)
-                            <p class="error_message">{{ $message }}</p>
-                        @endforeach
-                    @endif
+                    @error('name')
+                        <p class="error_message">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="register__content__email">
                     <div class="email__label">メールアドレス</div>
                     <input class="email__input" type="email" name="email" value="{{ old('email') }}" />
                 </div>
                 <div class="error">
-                    @if ($errors->has('email'))
-                        @foreach ($errors->get('email') as $message)
-                            <p class="error_message">{{ $message }}</p>
-                        @endforeach
-                    @endif
+                    @error('email')
+                        <p class="error_message">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="register__content__password">
                     <div class="password__label">パスワード</div>
                     <input class="password__input" type="password" name="password" value="{{ old('password') }}" />
                 </div>
                 <div class="error">
-                    @if ($errors->has('password'))
-                        @foreach ($errors->get('password') as $message)
-                            <p class="error_message">{{ $message }}</p>
-                        @endforeach
-                    @endif
+                    @error('password')
+                        <p class="error_message">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="register__content__password__confirmation">
                     <div class="password__label">確認用パスワード</div>

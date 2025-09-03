@@ -62,7 +62,7 @@ class UserController extends Controller
     public function showProfileForm()
     {
         $user = Auth::user();
-        $profile = $user->profile;
+        $profile = $user->profile ?? null;
         return view('mypage.profile', compact('user','profile'));
     }
 

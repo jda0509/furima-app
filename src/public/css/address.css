@@ -7,14 +7,16 @@
 }
 
 .address_main{
-    width: 680px;
+    width: 100%;
+    max-width: 680px;
     margin: 0 auto;
 }
 
 .address_main_postcode,
 .address_main_address,
 .address_main_building{
-    width: 680px;
+    width: 100%;
+    max-width: 680px;
     margin: o auto;
 }
 
@@ -29,14 +31,16 @@
 .postcode_form,
 .address_form,
 .building_form{
-    width: 680px;
+    width: 100%;
+    max-width: 680px;
     height: 37px;
     border-radius: 4px;
     border: 1px solid #5F5F5F;
 }
 
 .address_button{
-    width: 680px;
+    width: 100%;
+    max-width: 680px;
     height: 37px;
     border-radius: 4px;
     margin-top: 80px;

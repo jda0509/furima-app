@@ -12,6 +12,13 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    use HasFactory, Notifiable;
+
+    public function getRememberTokenName()
+    {
+        return null;
+    }
+
     /**
      * The attributes that are mass assignable.
      *
