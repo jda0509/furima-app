@@ -1,0 +1,58 @@
+.address{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.address_main{
+    width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.address_main_postcode,
+.address_main_address,
+.address_main_building{
+    width: 100%;
+    max-width: 680px;
+    margin: o auto;
+}
+
+.postcode_label,
+.address_label,
+.building_label{
+    margin-top: 60px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.postcode_form,
+.address_form,
+.building_form{
+    width: 100%;
+    max-width: 680px;
+    height: 37px;
+    border-radius: 4px;
+    border: 1px solid #5F5F5F;
+}
+
+.address_button{
+    width: 100%;
+    max-width: 680px;
+    height: 37px;
+    border-radius: 4px;
+    margin-top: 80px;
+    background-color: #FF5555;
+    color: white;
+    border: none;
+    font-weight: bold;
+}
+
+.error{
+    color: red;
+    max-width: 680px;
+    width: 100%;
+    text-align: left;
+}
