@@ -18,19 +18,15 @@ class ProductTest extends TestCase
      * @return void
      */
 
-    public function setUp(): void
+    public function test_sold_label_is_displayed_for_sold_products()
     {
-        $user = User::factory()->create();
-        Profile::factory()->create(['user_id' => $user->id]);
-        Product::factory()->create(['name' => '革靴']);
+        $product = Product::factory()->create([
+            'name' => 'テスト商品',
+            'status' => 'sold',
+        ]);
+
+        $response = $this->get(route('products.index'));
+        $response->assertSee('Sold');
     }
 
-    public function test_all_products_are_displayed_on_the_homepage()
-    {
-
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
-        $response->assertSee('革靴');
-    }
 }
